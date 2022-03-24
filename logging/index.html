@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<title> 22.S094: UB Capstone  </title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div style="align-items: left; justify-content:left;" class="container-fluid">
+    <h3> 22.S094: UB Capstone </h3>
+    <div class="navbar-nav">
+      <a class="nav-link active" href="../index.html">Home</a>
+      <a class="nav-link" href="../about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+
+<xmp theme="journal" style="display:none;">
+
+
+## Data Logging 
+
+[Visualization](./viz.html)
+
+We had initially hoped to have a plug-and-play solution with XBEE modules and a Raspberry PI, but after spending (probably too much) time struggling with it, I've reverted to hardware that I'm more familiar with. It's working great so far! 
+
+We're using ESP32 Huzzah microcontrollers that stream data over the MIT GUEST network to a database (called Firebase). 
+
+You should be able to view the contents of the database at [https://console.firebase.google.com/u/0/project/ger-data/database/ger-data-default-rtdb/data](https://console.firebase.google.com/u/0/project/ger-data/database/ger-data-default-rtdb/data), but only if your google credentials have been added. 
+
+I used tutorials from RandomNerdTutorials.com to help get this set up -- I find them very easy to follow. You don't need to complete these tutorials, but reading through them will help explain what's going on under the hood. 
+1. [Part 1: Data Logging](https://randomnerdtutorials.com/esp32-data-logging-firebase-realtime-database/)
+2. [Part 2: Data Viz](https://randomnerdtutorials.com/esp32-esp8266-firebase-gauges-charts/#more-108701)
+
+Note that I did some things a bit differently:
+- I didn't use VSCode, and included the web visualization on this domain instead of finding a new host
+- Instead of the sensor in the tutorial, I used a thermocouple with a MAX6675 amplifier module. [Here is a tutorial](https://electropeak.com/learn/interfacing-max6675-k-type-thermocouple-module-with-arduino/) for setting that up. 
+- [Here is the Arduino code](./logger.txt) that I used to measure 3 thermocouples and transmit the data to Firebase 
+
+You can change the time between readings by adjusting the variable `timerDelay` (currently 300000ms, or 5 minutes).
+
+You can add more thermocouples by copying the template in the code and finding more open pins on the microcontroller. Once you run out of pins, you can add more microcontrollers! 
+
+
+
+
+</xmp>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+<link rel="stylesheet" href="../custom.css">
+</html>
