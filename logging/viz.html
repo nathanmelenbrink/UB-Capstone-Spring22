@@ -137,7 +137,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <script type="text/javascript">
-      
+// convert epochtime to JavaScripte Date object
+function epochToJsDate(epochTime){
+  return new Date(epochTime*1000);
+}
+
+// convert time to human-readable format YYYY/MM/DD HH:MM:SS
+function epochToDateTime(epochTime){
+  var epochDate = new Date(epochToJsDate(epochTime));
+  var dateTime = epochDate.getFullYear() + "/" +
+    ("00" + (epochDate.getMonth() + 1)).slice(-2) + "/" +
+    ("00" + epochDate.getDate()).slice(-2) + " " +
+    ("00" + epochDate.getHours()).slice(-2) + ":" +
+    ("00" + epochDate.getMinutes()).slice(-2) + ":" +
+    ("00" + epochDate.getSeconds()).slice(-2);
+
+  return dateTime;
+}
+
 $(document).ready(function () {
     // initialize Global variables
     var dataArr = [];
@@ -145,14 +162,14 @@ $(document).ready(function () {
     var compareVal ='';
     var chartCount ;
     var currentFnD='';
-    var ref = firebase.database().ref("/UsersData/PuBHGFSoZ8gSfaBn1KqAsSjvBr93/readings/");
+    var ref = firebase.database().ref('/UsersData/PuBHGFSoZ8gSfaBn1KqAsSjvBr93/readings');
 
     // Get data function reads the firebase database. Order the data by Child of key timestamp
     // It then traverses each value in the firebase and 
 
     function getData() {
         console.log("get data function"); 
-        ref.on("value", function (snapshot) {
+        ref.on('value', function (snapshot) {
             var obj = snapshot.val();
             console.log(obj); 
           //   currentFnd=obj.foodAndDrinks;
@@ -191,6 +208,20 @@ $(document).ready(function () {
             // })); 
 
         });
+
+      ref.orderByKey().limitToLast(100).on('child_added', snapshot =>{
+        consolelog("ordering")
+        var jsonData = snapshot.toJSON(); // example: {temperature: 25.02, humidity: 50.20, pressure: 1008.48, timestamp:1641317355}
+        // Save values on variables
+        var temperature = jsonData.temperature;
+        var humidity = jsonData.humidity;
+        var pressure = jsonData.pressure;
+        var timestamp = jsonData.timestamp;
+        // Plot the values on the charts
+        plotValues(chartT, timestamp, temperature);
+        plotValues(chartH, timestamp, humidity);
+        plotValues(chartP, timestamp, pressure);
+      });
 
     }
 
