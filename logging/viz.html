@@ -5,6 +5,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title> 22.S094: UB Capstone  </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Cardo|Courgette|Domine|Hammersmith+One|Kalam|Neuton|Paytone+One|Quattrocento|Satisfy|Suranna" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -12,7 +23,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 
     <!-- include only the Firebase features as you need -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
 
     <script>
@@ -30,13 +41,15 @@
 };
 
       // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
 
 
       // Make auth and database references
       const db = firebase.database();
 
     </script>
+
+
 
 
 
@@ -63,12 +76,231 @@
 
 
 
-<!-- 
-<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-<link rel="stylesheet" href="../custom.css">
- -->
+<div class="container-fluid">
+        <nav class="navbar navbar-light bg-info">
+            <a class="navbar-brand" id="home" href="index.html">Home</a>
+            <img src="assets/images/logo.png" class="center" height=100px width=150px>
+            <a class="navbar-brand" id="stats" href="#">Stats</a>
+        </nav>
 
-  </body>
+        <!-- Main/home page section -->
+        <div class="jumbotron" id="main-page">
+            <p class="lead pt-3 pb-1 font-weight-bold"> Your ally to know where to go and what to talk about! </p>
+            <p class="lead pt-0 pb-4 font-weight-bold">Select an occasion to get started!</p>
+
+
+            <!--Side nav-->
+            <div class="row">
+
+                <div class="col-md-3 col-lg-2">
+                    <span class="text-occasion pb-5 mt-1">Select the Occasion</span>
+
+                    <button id="business" class="btn btn-to-get-form">
+                        <i class="fas fa-user-tie"></i><span class="text-business pl-3 mt-1">Business</span>
+                    </button>
+                    <button id="social" class="btn btn-to-get-form">
+                        <i class="fas fa-glass-cheers"></i><span class="text-social pl-3 mt-1">Social</span>
+                    </button>
+                    <button id="date" class="btn btn-to-get-form">
+                        <i class="fas fa-heart"></i><span class="text-date pb-5 pl-4 mt-1">Date</span>
+                    </button>
+                </div>
+
+                <!--Hidden section tag goes here-->
+                <div class="col-md-9 col-lg-10 text-align-center" id="input-form">
+
+                </div>
+            </div>
+            <!-- Closing main page  -->
+        </div> 
+
+            <!-- API results section -->
+            <div id="results" style="display:none;">
+                <div class="container-fluid mb-4">
+
+                    <!-- container for results -->
+                    <div class="row">
+                        <!--results food and news -->
+                        <div id="food" class="col-md-3 col-sm-8 col-xs-12 results mt-2 mb-4 ml-5 mr-3 bg-white" style="display:none;">
+                            <h2 id="heading-food">Food and Drinks</h2>
+                            <div id="food"></div>
+                        </div>
+                        <!--results movies/tv shows -->
+                        <div id="movie" class="col-md-4 col-sm-8 col-xs-12 results mt-2 mb-4 bg-white" style="display:none;">
+                            <h2 id="movies-People">Movies/TV-shows/People</h2>
+                            <div id="movies"></div>
+                        </div>
+                        <!--results for news -->
+                        <div id="news" class="col-md-3 col-sm-8 col-xs-12 results mt-2 ml-3 mr-3 mb-4 bg-white" style="display:none;">
+                            <h2 id="heading-news">News</h2>
+                            <div id="news"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <br/> 
+            <!--This will show the chart for stats-->
+            <div class="container-fluid w-75 h-50 text-center bg-white" id="user-stats" style="display:none">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+ 
+        <!--container-Footer-->
+        <div class="footer bg-info fixed-bottom">
+            <p class="copyright">Copyright.</p>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+        <script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+
+        <!-- link to Bootstrap JavaScript/jQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <!-- link to our JavaScript/jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+      
+$(document).ready(function () {
+    // initialize Global variables
+    var dataArr = [];
+    var previousVal = '';
+    var compareVal ='';
+    var chartCount ;
+    var currentFnD='';
+    var ref = firebase.database().ref("/UsersData/PuBHGFSoZ8gSfaBn1KqAsSjvBr93/readings/").orderByChild("timestamp");
+
+    // Get data function reads the firebase database. Order the data by Child of key timestamp
+    // It then traverses each value in the firebase and 
+
+    function getData() {
+        
+        ref.on("child_added", function (snapshot) {
+            var obj = snapshot.val();
+            console.log(obj); 
+          //   currentFnd=obj.foodAndDrinks;
+          //   if (currentFnd === previousVal && typeof obj.foodAndDrinks !=='undefined') {
+          //       chartCount++;
+          //       //currentFnD=obj.foodAndDrinks;
+          //   }
+          //   else if(typeof obj.foodAndDrinks ==='undefined' || obj.foodAndDrinks === ''){
+          //       console.log(chartCount, obj.label);
+          //       chartCount=0;
+          //   }
+          //   else if (currentFnd !== previousVal && typeof obj.foodAndDrinks !=='undefined'  || obj.foodAndDrinks !== ' ' || obj.foodAndDrinks !== "null") {
+          //       chartCount++;
+          //       dataArr = ({
+          //           label: previousVal,
+          //           value: chartCount,
+          //       });
+            
+          //       chartCount = 0;
+          //       previousVal = obj.foodAndDrinks;
+          //       //currentFnd=obj.foodAndDrinks;
+          //   }
+        
+          // // Verify that values are defined and push data into the chart    
+          //   if(typeof dataArr.label !== 'undefined' && typeof dataArr.value !=='undefined'){
+          //      if(dataArr.label !== compareVal){
+          //           addData(myChart, dataArr.label, dataArr.value);
+          //           compareVal = dataArr.label;
+          //      }     
+               
+                
+          //   }
+            
+            // var unique = $.makeArray($(dataArr).filter(function(i,itm){
+            //     return i == $(dataArr).index(itm);
+            // })); 
+
+        });
+
+    }
+
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+  // Initialize the Chart Element on HTML 
+    var ctx = document.getElementById("myChart").getContext("2d");
+    options = {
+        scales: {
+            xAxes: [{
+                barPercentage: 0.5,
+                barThickness: 6,
+                maxBarThickness: 8,
+                minBarLength: 2,
+                gridLines: {
+                    offsetGridLines: true
+                },
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        stepSize: 10
+                    }
+                }]
+            }],
+            layout: {
+                padding: {
+                    left: 50,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            }
+        }
+    }
+    // Set the configuration of the Chart elements.
+    // This is where we pass the data we captured from firebase to the chart label and data
+    var config = {
+        type: 'line',
+        data: {
+            labels: dataArr.label,       // value of label retrieved from firebase
+            datasets: [{
+                label: "User Views by Cuisine",
+                backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1,
+                data: dataArr.value     // value of search for each of the array elements
+            }],
+            responsive: true,
+            options: options
+
+        }
+    };
+
+    // Create new chart element context with refrence to the HTML element
+    var myChart = new Chart(ctx, config);
+
+   
+    // Put data into the dataset for the chart and update the chart
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
+    // Call the function which initiates the chart setup
+    getData();
+})
+
+</script>
+</body>
 
 </html>
