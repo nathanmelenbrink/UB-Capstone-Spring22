@@ -151,8 +151,8 @@ $(document).ready(function () {
     // It then traverses each value in the firebase and 
 
     function getData() {
-        
-        ref.on("child_added", function (snapshot) {
+        console.log("get data function"); 
+        ref.on("value", function (snapshot) {
             var obj = snapshot.val();
             console.log(obj); 
           //   currentFnd=obj.foodAndDrinks;
