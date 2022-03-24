@@ -137,6 +137,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <script type="text/javascript">
+
 // convert epochtime to JavaScripte Date object
 function epochToJsDate(epochTime){
   return new Date(epochTime*1000);
@@ -164,50 +165,56 @@ $(document).ready(function () {
     var currentFnD='';
     var ref = firebase.database().ref('/UsersData/PuBHGFSoZ8gSfaBn1KqAsSjvBr93/readings');
 
-    // Get data function reads the firebase database. Order the data by Child of key timestamp
-    // It then traverses each value in the firebase and 
-
     function getData() {
-        console.log("get data function"); 
-        ref.on('value', function (snapshot) {
-            var obj = snapshot.val();
-            console.log(obj); 
-          //   currentFnd=obj.foodAndDrinks;
-          //   if (currentFnd === previousVal && typeof obj.foodAndDrinks !=='undefined') {
-          //       chartCount++;
-          //       //currentFnD=obj.foodAndDrinks;
-          //   }
-          //   else if(typeof obj.foodAndDrinks ==='undefined' || obj.foodAndDrinks === ''){
-          //       console.log(chartCount, obj.label);
-          //       chartCount=0;
-          //   }
-          //   else if (currentFnd !== previousVal && typeof obj.foodAndDrinks !=='undefined'  || obj.foodAndDrinks !== ' ' || obj.foodAndDrinks !== "null") {
-          //       chartCount++;
-          //       dataArr = ({
-          //           label: previousVal,
-          //           value: chartCount,
-          //       });
-            
-          //       chartCount = 0;
-          //       previousVal = obj.foodAndDrinks;
-          //       //currentFnd=obj.foodAndDrinks;
-          //   }
-        
-          // // Verify that values are defined and push data into the chart    
-          //   if(typeof dataArr.label !== 'undefined' && typeof dataArr.value !=='undefined'){
-          //      if(dataArr.label !== compareVal){
-          //           addData(myChart, dataArr.label, dataArr.value);
-          //           compareVal = dataArr.label;
-          //      }     
-               
-                
-          //   }
-            
-            // var unique = $.makeArray($(dataArr).filter(function(i,itm){
-            //     return i == $(dataArr).index(itm);
-            // })); 
+      console.log("get data function"); 
 
-        });
+      ref.on('value', (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        console.log("data");
+      });
+
+      ref.on('value', function (snapshot) {
+          var obj = snapshot.val();
+          console.log(obj); 
+        //   currentFnd=obj.foodAndDrinks;
+        //   if (currentFnd === previousVal && typeof obj.foodAndDrinks !=='undefined') {
+        //       chartCount++;
+        //       //currentFnD=obj.foodAndDrinks;
+        //   }
+        //   else if(typeof obj.foodAndDrinks ==='undefined' || obj.foodAndDrinks === ''){
+        //       console.log(chartCount, obj.label);
+        //       chartCount=0;
+        //   }
+        //   else if (currentFnd !== previousVal && typeof obj.foodAndDrinks !=='undefined'  || obj.foodAndDrinks !== ' ' || obj.foodAndDrinks !== "null") {
+        //       chartCount++;
+        //       dataArr = ({
+        //           label: previousVal,
+        //           value: chartCount,
+        //       });
+          
+        //       chartCount = 0;
+        //       previousVal = obj.foodAndDrinks;
+        //       //currentFnd=obj.foodAndDrinks;
+        //   }
+      
+        // // Verify that values are defined and push data into the chart    
+        //   if(typeof dataArr.label !== 'undefined' && typeof dataArr.value !=='undefined'){
+        //      if(dataArr.label !== compareVal){
+        //           addData(myChart, dataArr.label, dataArr.value);
+        //           compareVal = dataArr.label;
+        //      }     
+             
+              
+        //   }
+          
+          // var unique = $.makeArray($(dataArr).filter(function(i,itm){
+          //     return i == $(dataArr).index(itm);
+          // })); 
+
+      });
+
+      console.log("here")
 
       ref.orderByKey().limitToLast(100).on('child_added', snapshot =>{
         consolelog("ordering")
