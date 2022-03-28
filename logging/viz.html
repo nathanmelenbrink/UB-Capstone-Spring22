@@ -137,7 +137,7 @@ $(document).ready(function () {
       lineChartData.labels = []; //add 'labels' element to object (X axis)
       lineChartData.datasets = []; //
 
-      ref.orderByKey().limitToLast(1000).on('child_added', snapshot =>{
+      ref.orderByKey().limitToFirst(1000).on('child_added', snapshot =>{
         console.log("ordering")
         var jsonData = snapshot.toJSON(); // example: {temperature: 25.02, humidity: 50.20, pressure: 1008.48, timestamp:1641317355}
         // Save values on variables
