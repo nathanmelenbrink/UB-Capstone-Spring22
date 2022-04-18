@@ -180,12 +180,12 @@ $(document).ready(function () {
           var content = '';
           content += '<tr>';
           content += '<td>' + epochToDateTime(jsonData.timestamp) + '</td>';
-          content += '<td>' + jsonData.temp0 + '</td>';
-          content += '<td>' + jsonData.temp1 + '</td>';
-          content += '<td>' + jsonData.temp2 + '</td>';
-          content += '<td>' + jsonData.temp3 + '</td>';
-          content += '<td>' + jsonData.temp4 + '</td>';
-          content += '<td>' + jsonData.temp5 + '</td>';
+          content += '<td>' + (jsonData.temp0 || 0) + '</td>';
+          content += '<td>' + (jsonData.temp1 || 0) + '</td>';
+          content += '<td>' + (jsonData.temp2 || 0) + '</td>';
+          content += '<td>' + (jsonData.temp3 || 0) + '</td>';
+          content += '<td>' + (jsonData.temp4 || 0) + '</td>';
+          content += '<td>' + (jsonData.temp5 || 0) + '</td>';
 
           content += '<td>' + jsonData.a_temp0 + '</td>';
           content += '<td>' + jsonData.a_temp1 + '</td>';
