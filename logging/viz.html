@@ -175,7 +175,7 @@ $(document).ready(function () {
         sensor11.push(jsonData.a_temp5);
 
 
-         addData(myChart, epochToDateTime(jsonData.timestamp), jsonData.sensor1);
+         //addData(myChart, epochToDateTime(jsonData.timestamp), jsonData.sensor1);
 
           var content = '';
           content += '<tr>';
@@ -187,12 +187,12 @@ $(document).ready(function () {
           content += '<td>' + (jsonData.temp4 || 0) + '</td>';
           content += '<td>' + (jsonData.temp5 || 0) + '</td>';
 
-          content += '<td>' + jsonData.a_temp0 + '</td>';
-          content += '<td>' + jsonData.a_temp1 + '</td>';
-          content += '<td>' + jsonData.a_temp2 + '</td>';
-          content += '<td>' + jsonData.a_temp3 + '</td>';
-          content += '<td>' + jsonData.a_temp4 + '</td>';
-          content += '<td>' + jsonData.a_temp5 + '</td>';
+          content += '<td>' + (jsonData.a_temp0 || 0) + '</td>';
+          content += '<td>' + (jsonData.a_temp1 || 0) + '</td>';
+          content += '<td>' + (jsonData.a_temp2 || 0) + '</td>';
+          content += '<td>' + (jsonData.a_temp3 || 0) + '</td>';
+          content += '<td>' + (jsonData.a_temp4 || 0) + '</td>';
+          content += '<td>' + (jsonData.a_temp5 || 0) + '</td>';
           content += '</tr>';
           $('#tbody').append(content);
 
