@@ -185,34 +185,37 @@ $(document).ready(function () {
 
          //addData(myChart, epochToDateTime(jsonData.timestamp), jsonData.sensor1);
 
-          var content = '';
-          content += '<tr>';
-          content += '<td>' + epochToDateTime(jsonData.timestamp) + '</td>';
-          content += '<td>' + (jsonData.temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.temp5 || '') + '</td>';
+          // var content = '';
+          // content += '<tr>';
+          // content += '<td>' + epochToDateTime(jsonData.timestamp) + '</td>';
+          // content += '<td>' + (jsonData.temp0 || '') + '</td>';
+          // content += '<td>' + (jsonData.temp1 || '') + '</td>';
+          // content += '<td>' + (jsonData.temp2 || '') + '</td>';
+          // content += '<td>' + (jsonData.temp3 || '') + '</td>';
+          // content += '<td>' + (jsonData.temp4 || '') + '</td>';
+          // content += '<td>' + (jsonData.temp5 || '') + '</td>';
 
-          content += '<td>' + (jsonData.a_temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp5 || '') + '</td>';
-          content += '</tr>';
-          $('#tbody').append(content);
+          // content += '<td>' + (jsonData.a_temp0 || '') + '</td>';
+          // content += '<td>' + (jsonData.a_temp1 || '') + '</td>';
+          // content += '<td>' + (jsonData.a_temp2 || '') + '</td>';
+          // content += '<td>' + (jsonData.a_temp3 || '') + '</td>';
+          // content += '<td>' + (jsonData.a_temp4 || '') + '</td>';
+          // content += '<td>' + (jsonData.a_temp5 || '') + '</td>';
+          // content += '</tr>';
+          // $('#tbody').append(content);
 
       });
 
+
+        console.log(time);
+        console.log(sensor0);
       renderTable();
     }
 
     function renderTable(){
         console.log("render table");
         for (let i = 0; i < time.length; i++){
-           
+           console.log(i);
             var content = '';
               content += '<tr>';
               content += '<td>' + time[i] + '</td>';
@@ -231,6 +234,9 @@ $(document).ready(function () {
               content += '</tr>';
               $('#tbody').append(content);
           }
+
+                  console.log(time);
+        console.log(sensor0);
 
       }
 
