@@ -162,6 +162,7 @@ $(document).ready(function () {
 
         let dt = epochToDateTime(jsonData.timestamp);
         if (time[time.length-1] !== dt){
+            console.log("push time"); 
             time.push(dt);
             sensor0.push(jsonData.temp0);
             sensor1.push(jsonData.temp1);
@@ -171,6 +172,7 @@ $(document).ready(function () {
             sensor5.push(jsonData.temp5);
         }
         else {
+            console.log("pull time");
             sensor6.push(jsonData.a_temp0);
             sensor7.push(jsonData.a_temp1);
             sensor8.push(jsonData.a_temp2);
