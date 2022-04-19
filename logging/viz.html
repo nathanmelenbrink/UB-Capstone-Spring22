@@ -159,21 +159,27 @@ $(document).ready(function () {
         console.log("ordering")
         var jsonData = snapshot.toJSON(); // example: {temperature: 25.02, humidity: 50.20, pressure: 1008.48, timestamp:1641317355}
         // Save values on variables
-        time.push(epochToDateTime(jsonData.timestamp));
-        sensor0.push(jsonData.temp0);
-        sensor1.push(jsonData.temp1);
-        sensor2.push(jsonData.temp2);
-        sensor3.push(jsonData.temp3);
-        sensor4.push(jsonData.temp4);
-        sensor5.push(jsonData.temp5);
 
-        sensor6.push(jsonData.a_temp0);
-        sensor7.push(jsonData.a_temp1);
-        sensor8.push(jsonData.a_temp2);
-        sensor9.push(jsonData.a_temp3);
-        sensor10.push(jsonData.a_temp4);
-        sensor11.push(jsonData.a_temp5);
+        let dt = epochToDateTime(jsonData.timestamp);
+        if (time[time.length-1] !== dt){
+            time.push(dt);
+            sensor0.push(jsonData.temp0);
+            sensor1.push(jsonData.temp1);
+            sensor2.push(jsonData.temp2);
+            sensor3.push(jsonData.temp3);
+            sensor4.push(jsonData.temp4);
+            sensor5.push(jsonData.temp5);
+        }
+        else {
+            sensor6.push(jsonData.a_temp0);
+            sensor7.push(jsonData.a_temp1);
+            sensor8.push(jsonData.a_temp2);
+            sensor9.push(jsonData.a_temp3);
+            sensor10.push(jsonData.a_temp4);
+            sensor11.push(jsonData.a_temp5);
+        }
 
+       
 
          //addData(myChart, epochToDateTime(jsonData.timestamp), jsonData.sensor1);
 
