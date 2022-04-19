@@ -207,6 +207,31 @@ $(document).ready(function () {
       });
     }
 
+    function renderTable(){
+    
+        for (let i = 0; i < time.length; i++){
+           
+            var content = '';
+              content += '<tr>';
+              content += '<td>' + time[i] + '</td>';
+              content += '<td>' + sensor0[i] + '</td>';
+              content += '<td>' + sensor1[i] + '</td>';
+              content += '<td>' + sensor2[i] + '</td>';
+              content += '<td>' + sensor3[i] + '</td>';
+              content += '<td>' + sensor4[i] + '</td>';
+              content += '<td>' + sensor5[i] + '</td>';
+              content += '<td>' + sensor6[i] + '</td>';
+              content += '<td>' + sensor7[i] + '</td>';
+              content += '<td>' + sensor8[i] + '</td>';
+              content += '<td>' + sensor9[i] + '</td>';
+              content += '<td>' + sensor10[i] + '</td>';
+              content += '<td>' + sensor11[i] + '</td>';
+              content += '</tr>';
+              $('#tbody').append(content);
+          }
+
+      }
+
     window.chartColors = {
         red: 'rgb(255, 99, 132)',
         orange: 'rgb(255, 159, 64)',
