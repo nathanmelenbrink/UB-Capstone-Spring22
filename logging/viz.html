@@ -72,15 +72,15 @@
             <table id="readings-table">
             <tr id="theader">
               <th>Timestamp</th>
-              <th>Sensor 0 (ºC)</th>
-              <th>Sensor 1 (ºC)</th>
-              <th>Sensor 2 (ºC)</th>
-              <th>Sensor 3 (ºC)</th>
+              <th>Ger High</th>
+              <th>Ger Low</th>
+              <th>Bottom Brick</th>
+              <th>Top Brick</th>
               <th>Sensor 4 (ºC)</th>
-              <th>Sensor 5 (ºC)</th>
-              <th>Sensor A0 (ºC)</th>
-              <th>Sensor A1 (ºC)</th>
-              <th>Sensor A2 (ºC)</th>
+              <th>Inside Brick </th>
+              <th>Side Insulation</th>
+              <th>Top Insulation</th>
+              <th>Side Brick</th>
               <th>Sensor A3 (ºC)</th>
               <th>Sensor A4 (ºC)</th>
               <th>Sensor A5 (ºC)</th>
@@ -188,12 +188,6 @@ $(document).ready(function () {
           var content = '';
           content += '<tr>';
           content += '<td>' + epochToDateTime(jsonData.b.timestamp) + '</td>';
-          content += '<td>' + (jsonData.b.temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp5 || '') + '</td>';
 
           content += '<td>' + (jsonData.a.a_temp0 || '') + '</td>';
           content += '<td>' + (jsonData.a.a_temp1 || '') + '</td>';
@@ -201,6 +195,14 @@ $(document).ready(function () {
           content += '<td>' + (jsonData.a.a_temp3 || '') + '</td>';
           content += '<td>' + (jsonData.a.a_temp4 || '') + '</td>';
           content += '<td>' + (jsonData.a.a_temp5 || '') + '</td>';
+
+          content += '<td>' + (jsonData.b.temp0 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp1 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp2 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp3 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp4 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp5 || '') + '</td>';
+          
           content += '</tr>';
           $('#tbody').append(content);
 
