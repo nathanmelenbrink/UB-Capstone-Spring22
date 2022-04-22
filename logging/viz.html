@@ -164,21 +164,21 @@ $(document).ready(function () {
         if (time[time.length-1] !== dt){
             console.log("push time"); 
             time.push(dt);
-            sensor0.push(jsonData.temp0);
-            sensor1.push(jsonData.temp1);
-            sensor2.push(jsonData.temp2);
-            sensor3.push(jsonData.temp3);
-            sensor4.push(jsonData.temp4);
-            sensor5.push(jsonData.temp5);
+            sensor0.push(jsonData.b.temp0);
+            sensor1.push(jsonData.b.temp1);
+            sensor2.push(jsonData.b.temp2);
+            sensor3.push(jsonData.b.temp3);
+            sensor4.push(jsonData.b.temp4);
+            sensor5.push(jsonData.b.temp5);
         }
         else {
             console.log("pull time");
-            sensor6.push(jsonData.a_temp0);
-            sensor7.push(jsonData.a_temp1);
-            sensor8.push(jsonData.a_temp2);
-            sensor9.push(jsonData.a_temp3);
-            sensor10.push(jsonData.a_temp4);
-            sensor11.push(jsonData.a_temp5);
+            sensor6.push(jsonData.a.a_temp0);
+            sensor7.push(jsonData.a.a_temp1);
+            sensor8.push(jsonData.a.a_temp2);
+            sensor9.push(jsonData.a.a_temp3);
+            sensor10.push(jsonData.a.a_temp4);
+            sensor11.push(jsonData.a.a_temp5);
         }
 
        
@@ -188,19 +188,19 @@ $(document).ready(function () {
           var content = '';
           content += '<tr>';
           content += '<td>' + epochToDateTime(jsonData.timestamp) + '</td>';
-          content += '<td>' + (jsonData.temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.temp5 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp0 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp1 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp2 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp3 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp4 || '') + '</td>';
+          content += '<td>' + (jsonData.b.temp5 || '') + '</td>';
 
-          content += '<td>' + (jsonData.a_temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.a_temp5 || '') + '</td>';
+          content += '<td>' + (jsonData.a.a_temp0 || '') + '</td>';
+          content += '<td>' + (jsonData.a.a_temp1 || '') + '</td>';
+          content += '<td>' + (jsonData.a.a_temp2 || '') + '</td>';
+          content += '<td>' + (jsonData.a.a_temp3 || '') + '</td>';
+          content += '<td>' + (jsonData.a.a_temp4 || '') + '</td>';
+          content += '<td>' + (jsonData.a.a_temp5 || '') + '</td>';
           content += '</tr>';
           $('#tbody').append(content);
 
