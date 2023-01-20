@@ -72,9 +72,9 @@
             <table id="readings-table">
             <tr id="theader">
               <th>Timestamp</th>
-              <th>Ger High</th>
-              <th>Ger Low</th>
-              <th>Bottom Brick</th>
+              <th>Sensor 0</th>
+              <th>Sensor 1</th>
+              <th>Sensor 2</th><!-- 
               <th>Top Brick</th>
               <th>Sensor 4 (ºC)</th>
               <th>Inside Brick </th>
@@ -83,7 +83,7 @@
               <th>Side Brick</th>
               <th>Sensor A3 (ºC)</th>
               <th>Sensor A4 (ºC)</th>
-              <th>Sensor A5 (ºC)</th>
+              <th>Sensor A5 (ºC)</th> -->
             </tr>
             <tbody id="tbody">
             </tbody>
@@ -159,7 +159,7 @@ $(document).ready(function () {
         var jsonData = snapshot.toJSON(); // example: {temperature: 25.02, humidity: 50.20, pressure: 1008.48, timestamp:1641317355}
         // Save values on variables
 
-        console.log(jsonData);
+        //console.log(jsonData);
 
         let dt = epochToDateTime(jsonData.a.timestamp);
         // if (time[time.length-1] !== dt){
@@ -200,9 +200,9 @@ $(document).ready(function () {
           content += '<td>' + (jsonData.a.temp0 || '') + '</td>';
           content += '<td>' + (jsonData.a.temp1 || '') + '</td>';
           content += '<td>' + (jsonData.a.temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.a.temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.a.temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.a.temp5 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.temp3 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.temp4 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.temp5 || '') + '</td>';
           
           content += '</tr>';
           $('#tbody').append(content);
