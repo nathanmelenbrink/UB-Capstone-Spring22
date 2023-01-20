@@ -209,139 +209,141 @@ $(document).ready(function () {
       });
     }
 
-    // function renderTable(){
-    //     console.log("render table");
-    //     for (let i = 0; i < time.length; i++){
+    function renderTable(){
+        console.log("render table");
+        for (let i = 0; i < time.length; i++){
            
-    //         var content = '';
-    //           content += '<tr>';
-    //           content += '<td>' + time[i] + '</td>';
-    //           content += '<td>' + sensor0[i] + '</td>';
-    //           content += '<td>' + sensor1[i] + '</td>';
-    //           content += '<td>' + sensor2[i] + '</td>';
-    //           content += '<td>' + sensor3[i] + '</td>';
-    //           content += '<td>' + sensor4[i] + '</td>';
-    //           content += '<td>' + sensor5[i] + '</td>';
-    //           content += '<td>' + sensor6[i] + '</td>';
-    //           content += '<td>' + sensor7[i] + '</td>';
-    //           content += '<td>' + sensor8[i] + '</td>';
-    //           content += '<td>' + sensor9[i] + '</td>';
-    //           content += '<td>' + sensor10[i] + '</td>';
-    //           content += '<td>' + sensor11[i] + '</td>';
-    //           content += '</tr>';
-    //           $('#tbody').append(content);
-    //       }
+            var content = '';
+              content += '<tr>';
+              content += '<td>' + time[i] + '</td>';
+              content += '<td>' + sensor0[i] + '</td>';
+              content += '<td>' + sensor1[i] + '</td>';
+              content += '<td>' + sensor2[i] + '</td>';
+              content += '<td>' + sensor3[i] + '</td>';
+              content += '<td>' + sensor4[i] + '</td>';
+              content += '<td>' + sensor5[i] + '</td>';
+              content += '<td>' + sensor6[i] + '</td>';
+              content += '<td>' + sensor7[i] + '</td>';
+              content += '<td>' + sensor8[i] + '</td>';
+              content += '<td>' + sensor9[i] + '</td>';
+              content += '<td>' + sensor10[i] + '</td>';
+              content += '<td>' + sensor11[i] + '</td>';
+              content += '</tr>';
+              $('#tbody').append(content);
+          }
 
-    //   }
+      }
 
-    // window.chartColors = {
-    //     red: 'rgb(255, 99, 132)',
-    //     orange: 'rgb(255, 159, 64)',
-    //     yellow: 'rgb(255, 205, 86)',
-    //     green: 'rgb(75, 192, 192)',
-    //     blue: 'rgb(54, 162, 235)',
-    //     purple: 'rgb(153, 102, 255)',
-    //     grey: 'rgb(201, 203, 207)'
-    // };
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
   // Initialize the Chart Element on HTML 
-    // var ctx = document.getElementById("myChart").getContext("2d");
-    // options = {
-    //     scales: {
-    //         xAxes: [{
-    //             barPercentage: 0.5,
-    //             barThickness: 6,
-    //             maxBarThickness: 8,
-    //             minBarLength: 2,
-    //             gridLines: {
-    //                 offsetGridLines: true
-    //             },
-    //             yAxes: [{
-    //                 ticks: {
-    //                     min: 0,
-    //                     max: 100,
-    //                     stepSize: 10
-    //                 }
-    //             }]
-    //         }],
-    //         layout: {
-    //             padding: {
-    //                 left: 50,
-    //                 right: 0,
-    //                 top: 0,
-    //                 bottom: 0
-    //             }
-    //         }
-    //     }
-    // }
-    // Set the configuration of the Chart elements.
-    // This is where we pass the data we captured from firebase to the chart label and data
-    // var config = {
-    //     type: 'line',
-    //     data: {
-    //         labels: dataArr.label,       // value of label retrieved from firebase
-    //         datasets: [{
-    //             label: "Sensor 1 (C)",
-    //             // backgroundColor: "rgb(255, 159, 64)",
-    //             borderColor: "rgba(54, 162, 235, 1)",
-    //             borderWidth: 1,
-    //             data: sensor0,     // value of search for each of the array elements
-    //         },
-    //         {
-    //             label: "Sensor 2 (C)",
-    //             // backgroundColor: "rgb(255, 159, 64)",
-    //             borderColor: "rgb(153, 102, 255)",
-    //             borderWidth: 1,
-    //             data: sensor1,    // value of search for each of the array elements
-    //         },
-    //         {
-    //             label: "Sensor 3 (C)",
-    //             // backgroundColor: "rgb(255, 159, 64)",
-    //             borderColor: "rgb(75, 192, 192)",
-    //             borderWidth: 1,
-    //             data: sensor2,     // value of search for each of the array elements
-    //         },
-    //         {
-    //             label: "Sensor 4 (C)",
-    //             // backgroundColor: "rgb(255, 159, 64)",
-    //             borderColor: "rgb(255, 0, 0)",
-    //             borderWidth: 1,
-    //             data: sensor3,     // value of search for each of the array elements
-    //         },
-    //         {
-    //             label: "Sensor 5 (C)",
-    //             // backgroundColor: "rgb(255, 159, 64)",
-    //             borderColor: "rgb(0, 255, 0)",
-    //             borderWidth: 1,
-    //             data: sensor4,     // value of search for each of the array elements
-    //         },
-    //         {
-    //             label: "Sensor 6 (C)",
-    //             // backgroundColor: "rgb(255, 159, 64)",
-    //             borderColor: "rgb(0, 255, 255)",
-    //             borderWidth: 1,
-    //             data: sensor5,     // value of search for each of the array elements
-    //         }],
-    //         responsive: true,
-    //         options: options
+    
+    var ctx = document.getElementById("myChart").getContext("2d");
+    options = {
+        scales: {
+            xAxes: [{
+                barPercentage: 0.5,
+                barThickness: 6,
+                maxBarThickness: 8,
+                minBarLength: 2,
+                gridLines: {
+                    offsetGridLines: true
+                },
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        stepSize: 10
+                    }
+                }]
+            }],
+            layout: {
+                padding: {
+                    left: 50,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            }
+        }
+    }
+    Set the configuration of the Chart elements.
+    This is where we pass the data we captured from firebase to the chart label and data
+    var config = {
+        type: 'line',
+        data: {
+            labels: dataArr.label,       // value of label retrieved from firebase
+            datasets: [{
+                label: "Sensor 1 (C)",
+                // backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1,
+                data: sensor0,     // value of search for each of the array elements
+            },
+            {
+                label: "Sensor 2 (C)",
+                // backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgb(153, 102, 255)",
+                borderWidth: 1,
+                data: sensor1,    // value of search for each of the array elements
+            },
+            {
+                label: "Sensor 3 (C)",
+                // backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgb(75, 192, 192)",
+                borderWidth: 1,
+                data: sensor2,     // value of search for each of the array elements
+            },
+            {
+                label: "Sensor 4 (C)",
+                // backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgb(255, 0, 0)",
+                borderWidth: 1,
+                data: sensor3,     // value of search for each of the array elements
+            },
+            {
+                label: "Sensor 5 (C)",
+                // backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgb(0, 255, 0)",
+                borderWidth: 1,
+                data: sensor4,     // value of search for each of the array elements
+            },
+            {
+                label: "Sensor 6 (C)",
+                // backgroundColor: "rgb(255, 159, 64)",
+                borderColor: "rgb(0, 255, 255)",
+                borderWidth: 1,
+                data: sensor5,     // value of search for each of the array elements
+            }],
+            responsive: true,
+            options: options
 
-    //     }
-    // };
+        }
+    };
 
-    // // Create new chart element context with refrence to the HTML element
-    // var myChart = new Chart(ctx, config);
+    // Create new chart element context with refrence to the HTML element
+    var myChart = new Chart(ctx, config);
 
    
-    // // Put data into the dataset for the chart and update the chart
-    // function addData(chart, label, data) {
-    //     chart.data.labels.push(label);
-    //     chart.data.datasets.forEach((dataset) => {
-    //         dataset.data.push(data);
-    //     });
-    //     chart.update();
-    // }
+    // Put data into the dataset for the chart and update the chart
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
     // Call the function which initiates the chart setup
     getData();
-    //renderTable();
+    renderTable();
 })
 
 </script>
