@@ -160,6 +160,8 @@ $(document).ready(function () {
         var jsonData = snapshot.toJSON(); // example: {temperature: 25.02, humidity: 50.20, pressure: 1008.48, timestamp:1641317355}
         // Save values on variables
 
+        console.log(jsonData);
+
         let dt = epochToDateTime(jsonData.b.timestamp);
         // if (time[time.length-1] !== dt){
         //     console.log("push time"); 
@@ -245,7 +247,7 @@ $(document).ready(function () {
     };
 
   // Initialize the Chart Element on HTML 
-    
+
     var ctx = document.getElementById("myChart").getContext("2d");
     options = {
         scales: {
@@ -275,8 +277,10 @@ $(document).ready(function () {
             }
         }
     }
-    Set the configuration of the Chart elements.
-    This is where we pass the data we captured from firebase to the chart label and data
+
+    //Set the configuration of the Chart elements.
+    //This is where we pass the data we captured from firebase to the chart label and data
+    
     var config = {
         type: 'line',
         data: {
