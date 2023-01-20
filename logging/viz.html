@@ -162,7 +162,7 @@ $(document).ready(function () {
 
         console.log(jsonData);
 
-        let dt = epochToDateTime(jsonData.b.timestamp);
+        let dt = epochToDateTime(jsonData.a.timestamp);
         // if (time[time.length-1] !== dt){
         //     console.log("push time"); 
         //     time.push(dt);
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
        
 
-         //addData(myChart, epochToDateTime(jsonData.timestamp), jsonData.sensor1);
+         addData(myChart, epochToDateTime(jsonData.timestamp), jsonData.sensor1);
 
           var content = '';
           content += '<tr>';
