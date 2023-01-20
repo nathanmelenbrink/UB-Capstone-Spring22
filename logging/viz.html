@@ -190,19 +190,19 @@ $(document).ready(function () {
           content += '<tr>';
           content += '<td>' + epochToDateTime(jsonData.a.timestamp) + '</td>';
 
-          content += '<td>' + (jsonData.a.a_temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.a.a_temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.a.a_temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.a.a_temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.a.a_temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.a.a_temp5 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.a_temp0 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.a_temp1 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.a_temp2 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.a_temp3 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.a_temp4 || '') + '</td>';
+          // content += '<td>' + (jsonData.a.a_temp5 || '') + '</td>';
 
-          content += '<td>' + (jsonData.b.temp0 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp1 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp2 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp3 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp4 || '') + '</td>';
-          content += '<td>' + (jsonData.b.temp5 || '') + '</td>';
+          content += '<td>' + (jsonData.a.temp0 || '') + '</td>';
+          content += '<td>' + (jsonData.a.temp1 || '') + '</td>';
+          content += '<td>' + (jsonData.a.temp2 || '') + '</td>';
+          content += '<td>' + (jsonData.a.temp3 || '') + '</td>';
+          content += '<td>' + (jsonData.a.temp4 || '') + '</td>';
+          content += '<td>' + (jsonData.a.temp5 || '') + '</td>';
           
           content += '</tr>';
           $('#tbody').append(content);
