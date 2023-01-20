@@ -220,15 +220,15 @@ $(document).ready(function () {
               content += '<td>' + sensor0[i] + '</td>';
               content += '<td>' + sensor1[i] + '</td>';
               content += '<td>' + sensor2[i] + '</td>';
-              content += '<td>' + sensor3[i] + '</td>';
-              content += '<td>' + sensor4[i] + '</td>';
-              content += '<td>' + sensor5[i] + '</td>';
-              content += '<td>' + sensor6[i] + '</td>';
-              content += '<td>' + sensor7[i] + '</td>';
-              content += '<td>' + sensor8[i] + '</td>';
-              content += '<td>' + sensor9[i] + '</td>';
-              content += '<td>' + sensor10[i] + '</td>';
-              content += '<td>' + sensor11[i] + '</td>';
+              // content += '<td>' + sensor3[i] + '</td>';
+              // content += '<td>' + sensor4[i] + '</td>';
+              // content += '<td>' + sensor5[i] + '</td>';
+              // content += '<td>' + sensor6[i] + '</td>';
+              // content += '<td>' + sensor7[i] + '</td>';
+              // content += '<td>' + sensor8[i] + '</td>';
+              // content += '<td>' + sensor9[i] + '</td>';
+              // content += '<td>' + sensor10[i] + '</td>';
+              // content += '<td>' + sensor11[i] + '</td>';
               content += '</tr>';
               $('#tbody').append(content);
           }
@@ -285,46 +285,46 @@ $(document).ready(function () {
         data: {
             labels: dataArr.label,       // value of label retrieved from firebase
             datasets: [{
-                label: "Sensor 1 (C)",
+                label: "Sensor 0 (C)",
                 // backgroundColor: "rgb(255, 159, 64)",
                 borderColor: "rgba(54, 162, 235, 1)",
                 borderWidth: 1,
                 data: sensor0,     // value of search for each of the array elements
             },
             {
-                label: "Sensor 2 (C)",
+                label: "Sensor 1 (C)",
                 // backgroundColor: "rgb(255, 159, 64)",
                 borderColor: "rgb(153, 102, 255)",
                 borderWidth: 1,
                 data: sensor1,    // value of search for each of the array elements
             },
             {
-                label: "Sensor 3 (C)",
+                label: "Sensor 2 (C)",
                 // backgroundColor: "rgb(255, 159, 64)",
                 borderColor: "rgb(75, 192, 192)",
                 borderWidth: 1,
                 data: sensor2,     // value of search for each of the array elements
-            },
-            {
-                label: "Sensor 4 (C)",
-                // backgroundColor: "rgb(255, 159, 64)",
-                borderColor: "rgb(255, 0, 0)",
-                borderWidth: 1,
-                data: sensor3,     // value of search for each of the array elements
-            },
-            {
-                label: "Sensor 5 (C)",
-                // backgroundColor: "rgb(255, 159, 64)",
-                borderColor: "rgb(0, 255, 0)",
-                borderWidth: 1,
-                data: sensor4,     // value of search for each of the array elements
-            },
-            {
-                label: "Sensor 6 (C)",
-                // backgroundColor: "rgb(255, 159, 64)",
-                borderColor: "rgb(0, 255, 255)",
-                borderWidth: 1,
-                data: sensor5,     // value of search for each of the array elements
+            //},
+            // {
+            //     label: "Sensor 4 (C)",
+            //     // backgroundColor: "rgb(255, 159, 64)",
+            //     borderColor: "rgb(255, 0, 0)",
+            //     borderWidth: 1,
+            //     data: sensor3,     // value of search for each of the array elements
+            // },
+            // {
+            //     label: "Sensor 5 (C)",
+            //     // backgroundColor: "rgb(255, 159, 64)",
+            //     borderColor: "rgb(0, 255, 0)",
+            //     borderWidth: 1,
+            //     data: sensor4,     // value of search for each of the array elements
+            // },
+            // {
+            //     label: "Sensor 6 (C)",
+            //     // backgroundColor: "rgb(255, 159, 64)",
+            //     borderColor: "rgb(0, 255, 255)",
+            //     borderWidth: 1,
+            //     data: sensor5,     // value of search for each of the array elements
             }],
             responsive: true,
             options: options
