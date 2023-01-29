@@ -20,13 +20,27 @@
 
 ## Data Logging 
 
-[Visualization](./viz.html)
+Click here to see the [visualization](./viz.html). It may take a long time to load if there are many data points in the database.  
 
-We had initially hoped to have a plug-and-play solution with XBEE modules and a Raspberry PI, but after spending (probably too much) time struggling with it, I've reverted to hardware that I'm more familiar with. It's working great so far! 
+### Instructions for NUM 
+
+We're using ESP32-S2 Dev Module microcontrollers to stream the data from the thermocouples to the NUM network. In order to program this microcontroller, I use the Arduino IDE. Setup instructions [are here](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/), except you should choose the ESP32-S2 Dev Module.  
+
+[Here is the Arduino code](./loggerNUM.txt) that I used to measure 3 thermocouples and transmit the data to Firebase. 
+
+You can change the time between readings by adjusting the variable `timerDelay` (currently 60000ms, or 1 minute). You can also add more thermocouples using the available pins on the microcontroller. 
+
+### Instructions for MIT PSFC Makerspace 
 
 We're using ESP32 Huzzah microcontrollers that stream data over the MIT GUEST network to a database (called Firebase). 
 
-You should be able to view the contents of the database at [https://console.firebase.google.com/u/0/project/ger-data/database/ger-data-default-rtdb/data](https://console.firebase.google.com/u/0/project/ger-data/database/ger-data-default-rtdb/data), but only if your google credentials have been added. 
+[Here is the Arduino code](./logger.txt) that I used to measure 3 thermocouples and transmit the data to Firebase. 
+
+You can change the time between readings by adjusting the variable `timerDelay` (currently 300000ms, or 5 minutes).
+
+### General Instructions 
+
+You should be able to view the contents of the database at [https://console.firebase.google.com/u/0/project/ger-data/database/ger-data-default-rtdb/data](https://console.firebase.google.com/u/0/project/ger-data/database/ger-data-default-rtdb/data), but only if your google credentials have been added (let me know if you'd like to be added). 
 
 I used tutorials from RandomNerdTutorials.com to help get this set up -- I find them very easy to follow. You don't need to complete these tutorials, but reading through them will help explain what's going on under the hood. 
 
@@ -38,9 +52,6 @@ Note that I did some things a bit differently:
 - I didn't use VSCode, and included the web visualization on this domain instead of finding a new host
 - In fact I didn't follow Part 2 very closely at all, I did not set up a "Firebase Web App Project"; I just copied/edited/wrote a few functions in JavaScript. I also didn't both with user credentials, etc. 
 - Instead of the sensor in the tutorial, I used a thermocouple with a MAX6675 amplifier module. [Here is a tutorial](https://electropeak.com/learn/interfacing-max6675-k-type-thermocouple-module-with-arduino/) for setting that up. 
-- [Here is the Arduino code](./logger.txt) that I used to measure 3 thermocouples and transmit the data to Firebase 
-
-You can change the time between readings by adjusting the variable `timerDelay` (currently 300000ms, or 5 minutes).
 
 You can add more thermocouples by copying the template in the code and finding more open pins on the microcontroller. Once you run out of pins, you can add more microcontrollers! 
 

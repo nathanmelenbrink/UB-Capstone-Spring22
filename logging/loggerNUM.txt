@@ -1,0 +1,174 @@
+#include <Arduino.h>
+#include <WiFi.h>
+#include <Firebase_ESP_Client.h>
+#include <Wire.h>
+#include "time.h"
+#include "max6675.h"
+
+// Provide the token generation process info.
+#include "addons/TokenHelper.h"
+// Provide the RTDB payload printing info and other helper functions.
+#include "addons/RTDBHelper.h"
+
+// Insert your network credentials
+#define WIFI_SSID "NRC-SECURE"
+#define WIFI_PASSWORD "NUM-nrc-2018"
+
+// Insert Firebase project API Key
+#define API_KEY "AIzaSyA4zxo5UHbuzuuT3SPyN266CHt1ngc_Qtw"
+
+// Insert Authorized Email and Corresponding Password
+#define USER_EMAIL "nathanmelenbrink@gmail.com"
+#define USER_PASSWORD "Nathan"
+
+// Insert RTDB URLefine the RTDB URL
+#define DATABASE_URL "https://ger-data-default-rtdb.firebaseio.com/"
+
+// thermocouple pin assignments
+int soPin = 14;// SO=Serial Out
+int csPin = 15;// CS = chip select CS pin
+int sckPin = 13;// SCK = Serial Clock pin
+
+int soPin1 = 35;// SO=Serial Out
+int csPin1 = 36;// CS = chip select CS pin
+int sckPin1 = 37;// SCK = Serial Clock pin
+
+int soPin2 = 40;// SO=Serial Out
+int csPin2 = 41;// CS = chip select CS pin
+int sckPin2 = 42;// SCK = Serial Clock pin
+
+MAX6675 Module(sckPin, csPin, soPin);// create instance object of MAX6675
+MAX6675 Module1(sckPin1, csPin1, soPin1);// create instance object of MAX6675
+MAX6675 Module2(sckPin2, csPin2, soPin2);// create instance object of MAX6675
+
+// Define Firebase objects
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+// Variable to save USER UID
+String uid;
+
+// Database main path (to be updated in setup with the user UID)
+String databasePath;
+// Database child nodes
+String tempPath = "/temp0";
+String tempPath1 = "/temp1";
+String tempPath2 = "/temp2";
+String timePath = "/timestamp";
+
+// Parent Node (to be updated in every loop)
+String parentPath;
+int i = 0; 
+
+int timestamp;
+FirebaseJson json;
+
+const char* ntpServer = "pool.ntp.org";
+
+// Timer variables (send new readings every five minutes)
+unsigned long sendDataPrevMillis = 0;
+unsigned long timerDelay = 60000;
+
+// Initialize WiFi
+void initWiFi() {
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to WiFi ..");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    delay(1000);
+  }
+  Serial.println(WiFi.localIP());
+  Serial.println();
+}
+
+// Function that gets current epoch time
+unsigned long getTime() {
+  time_t now;
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    //Serial.println("Failed to obtain time");
+    return (0);
+  }
+  time(&now);
+  return now;
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  initWiFi();
+  configTime(0, 0, ntpServer);
+
+  // Assign the api key (required)
+  config.api_key = API_KEY;
+
+  // Assign the user sign in credentials
+  auth.user.email = USER_EMAIL;
+  auth.user.password = USER_PASSWORD;
+
+  // Assign the RTDB URL (required)
+  config.database_url = DATABASE_URL;
+
+  Firebase.reconnectWiFi(true);
+  fbdo.setResponseSize(4096);
+
+  // Assign the callback function for the long running token generation task */
+  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
+
+  // Assign the maximum retry of token generation
+  config.max_token_generation_retry = 5;
+
+  // Initialize the library with the Firebase authen and config
+  Firebase.begin(&config, &auth);
+
+  // Getting the user UID might take a few seconds
+  Serial.println("Getting User UID");
+  while ((auth.token.uid) == "") {
+    Serial.print('.');
+    delay(1000);
+  }
+  // Print user UID
+  uid = auth.token.uid.c_str();
+  Serial.print("User UID: ");
+  Serial.println(uid);
+
+  // Update database path
+  databasePath = "/UsersData/" + uid + "/readings";
+
+// These lines will clear the database, if needed 
+//  json.set(databasePath.c_str(), String(""));
+//    //Serial.printf("Set json... %s\n", Firebase.RTDB.updateNodeAsync(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+//  Serial.printf("Set json... %s\n", Firebase.RTDB.setJSONAsync(&fbdo, databasePath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+//   
+}
+
+void loop() {
+  // Send new readings to database
+  if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0)) {
+    sendDataPrevMillis = millis();
+
+    //Get current timestamp
+    timestamp = getTime();
+    Serial.print ("time: ");
+    Serial.println (timestamp);
+
+    //parentPath = databasePath + "/" + String(timestamp);
+    parentPath = databasePath + "/" + String(i) + "/a";
+
+    float c = Module.readCelsius();
+    float c1 = Module1.readCelsius();
+    float c2 = Module2.readCelsius();
+
+    Serial.print("C = ");
+    Serial.println(c);
+
+    json.set(tempPath.c_str(), String(c));
+    json.set(tempPath1.c_str(), String(c1));
+    json.set(tempPath2.c_str(), String(c2));
+    json.set(timePath, String(timestamp));
+    //Serial.printf("Set json... %s\n", Firebase.RTDB.updateNodeAsync(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+    Serial.printf("Set json... %s\n", Firebase.RTDB.setJSONAsync(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+    i++;  
+  }
+}
